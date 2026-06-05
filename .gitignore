@@ -1,0 +1,19 @@
+# Python
+PythonBridge/venv/
+__pycache__/
+*.pyc
+
+# VS Code
+.vscode/
+
+# Unreal Engine
+Binaries/
+DerivedDataCache/
+Intermediate/
+Saved/
+
+# Visual Studio
+.vs/
+
+# Windows
+Thumbs.db
