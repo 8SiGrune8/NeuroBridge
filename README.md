@@ -394,3 +394,43 @@ TBD
 
 
 
+# NeuroBridge Development Milestones
+
+## Milestone M0 — Project Foundation
+
+* [x] Python environment installed
+* [x] Git repository initialized
+* [x] BrainFlow installed
+* [x] Project structure created
+
+## Milestone M1 — Unreal Communication Pipeline
+
+* [x] OSC Sender implemented in Python
+* [x] OSC Receiver implemented in Unreal Engine
+* [x] Real-time float transmission verified
+* [x] Sphere scale controlled from external data
+
+## Milestone M2 — BrainFlow Integration
+
+* [ ] Connect BrainFlow Synthetic Board
+* [ ] Extract test metric from BrainFlow stream
+* [ ] Send metric through OSC
+* [ ] Drive Unreal visualization from BrainFlow data
+
+## Milestone M3 — Muse Integration
+
+* [ ] Connect Muse 2 / Muse S
+* [ ] Receive live EEG stream
+* [ ] Compute MindState metric
+* [ ] Stream MindState to Unreal Engine
+
+## Milestone M4 — Neurofeedback Prototype
+
+* [ ] Create visual feedback scene
+* [ ] Smooth incoming values
+* [ ] User-controlled visual response
+* [ ] End-to-end NeuroBridge MVP demonstration
+
+
+
+
