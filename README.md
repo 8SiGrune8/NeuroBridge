@@ -394,6 +394,17 @@ TBD
 
 
 
+## Important OSC Configuration (UE 5.7+)
+When creating the OSC Server in Unreal Engine, set:
+Receive IP Address = 0.0.0.0
+Using 127.0.0.1 may prevent the Blueprint OSC receiver from receiving messages, even though the sender is transmitting correctly.
+OSC sender can still transmit to:
+127.0.0.1:7001
+while the UE server listens on:
+0.0.0.0:7001
+
+---
+
 # NeuroBridge Development Milestones
 
 ## Milestone M0 — Project Foundation
@@ -403,19 +414,104 @@ TBD
 * [x] BrainFlow installed
 * [x] Project structure created
 
+---
+
 ## Milestone M1 — Unreal Communication Pipeline
 
 * [x] OSC Sender implemented in Python
 * [x] OSC Receiver implemented in Unreal Engine
 * [x] Real-time float transmission verified
-* [x] Sphere scale controlled from external data
+* [x] Successfully controlled an Unreal Engine actor from external OSC data (Sphere scale)
 
 ## Milestone M2 — BrainFlow Integration
 
-* [ ] Connect BrainFlow Synthetic Board
-* [ ] Extract test metric from BrainFlow stream
-* [ ] Send metric through OSC
-* [ ] Drive Unreal visualization from BrainFlow data
+* [ ] Connected BrainFlow Synthetic Board
+* [ ] Implemented a prototype MindState metric
+* [ ] Streamed BrainFlow data via OSC
+* [ ] Successfully controlled Unreal Engine visualization using BrainFlow data
+
+## Milestone M3 — BrainView Prototype
+
+The first functional prototype of **BrainView** has been developed — a research-oriented visualization module for representing brain activity inside Unreal Engine 5.
+
+Unlike a static 3D brain model, BrainView is designed as a scalable visualization framework capable of receiving data from both real EEG devices (e.g. Muse) and software simulators such as the BrainFlow Synthetic Board.
+
+Completed features:
+
+- [x] Automatic generation of neural nodes
+- [x] BrainNode data structure implemented
+- [x] Automatic assignment of anatomical brain regions
+- [x] GPU data transfer using **Per Instance Custom Data**
+- [x] Procedural neuron material created
+- [x] First visualization control pipeline implemented
+- [x] Global neural activity can be controlled through a single parameter, allowing the entire brain visualization to change its flickering behaviour in real time
+
+BrainView will serve as the primary visualization subsystem of NeuroBridge.
+
+---
+
+## Milestone M4 — NeuroBridge Live Pipeline
+
+The first complete real-time data pipeline between BrainFlow and Unreal Engine has been successfully demonstrated.
+
+Completed features:
+
+- [x] BrainFlow Synthetic Board connected
+- [x] Real-time MindState calculation
+- [x] OSC transmission implemented
+- [x] Unreal Engine 5.7 receives OSC messages successfully
+- [x] BrainFlow data directly controls objects inside Unreal Engine
+
+### Architecture
+
+```
+BrainFlow Synthetic Board
+          ↓
+      MindState
+          ↓
+      Python OSC
+          ↓
+      Unreal Engine 5.7
+          ↓
+ Blueprint Visualization
+```
+
+### Important OSC Configuration (UE 5.7+)
+
+When creating an OSC Server in Unreal Engine 5.7, use:
+
+```
+Receive IP Address = 0.0.0.0
+```
+
+instead of
+
+```
+127.0.0.1
+```
+
+The OSC sender may still transmit to:
+
+```
+127.0.0.1:7001
+```
+
+while the Unreal Engine server listens on
+
+```
+0.0.0.0:7001
+```
+
+Using `127.0.0.1` as the **Receive IP Address** prevented OSC messages from being received during testing, while `0.0.0.0` resolved the issue completely.
+
+This configuration has been verified with Unreal Engine **5.7**.
+
+---
+
+
+
+## Not released
+
 
 ## Milestone M3 — Muse Integration
 
@@ -432,5 +528,18 @@ TBD
 * [ ] End-to-end NeuroBridge MVP demonstration
 
 
+---
 
+
+## Development Log
+
+### 2026-06-30
+- BrainFlow Synthetic Board successfully connected to Unreal Engine.
+- Real-time OSC communication verified.
+- First live visualization driven by BrainFlow data.
+- Unreal Engine 5.7 OSC receiver configuration issue resolved (`Receive IP Address = 0.0.0.0`).
+
+### 2026-06-XX
+- BrainView prototype completed.
+- Procedural neuron rendering implemented.
 
